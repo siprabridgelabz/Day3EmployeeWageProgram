@@ -11,7 +11,7 @@ namespace EmployeeWage
         static void Main(string[] args)
         {
             EmployeeInformation employeeInformation = new EmployeeInformation();
-            employeeInformation.EmpAttendance();
+            employeeInformation.EmpWage();
             Console.ReadLine();
         }
     }
