@@ -8,21 +8,27 @@ namespace EmployeeWage
 {
     public class EmployeeInformation
     {
-        public  void EmpWage()
+        public void Employee()
         {
             int IS_FULL_TIME = 1;
+            int IS_PART_TIME = 2;
             int EMP_RATE_PER_HOUR = 20;
-
             int empHrs = 0;
             int empWage = 0;
+
             Random random = new Random();
 
             int empCheck = random.Next(2);
+
             if (empCheck == IS_FULL_TIME)
             {
                 empHrs = 8;
                 Console.WriteLine("Employee is present");
-
+            }
+            else if (empCheck == IS_PART_TIME)
+            {
+                empHrs = 4;
+                Console.WriteLine("Employee is working as part time");
             }
             else
             {
@@ -30,7 +36,7 @@ namespace EmployeeWage
                 Console.WriteLine("Employee is absent");
             }
             empWage = empHrs * EMP_RATE_PER_HOUR;
-            Console.WriteLine("Emp Wage : " + empWage);
+            Console.WriteLine("Employee Wage : " + empWage);
         }
     }
     
