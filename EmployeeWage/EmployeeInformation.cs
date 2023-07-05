@@ -8,35 +8,37 @@ namespace EmployeeWage
 {
     public class EmployeeInformation
     {
-        public void Employee()
+        public  void EmployeeWageSwitchCaseStatement()
         {
             int IS_FULL_TIME = 1;
             int IS_PART_TIME = 2;
             int EMP_RATE_PER_HOUR = 20;
-            int empHrs = 0;
-            int empWage = 0;
+            int Emp_Hrs = 0;
+            int Emp_Wage = 0;
 
             Random random = new Random();
+            int emp_Check = random.Next(3);
 
-            int empCheck = random.Next(2);
+            switch (emp_Check)
+            {
+                case 0:
+                    Emp_Hrs = 8;
+                    Console.WriteLine("The Employee is Present");
+                    break;
+                case 1:
+                    Emp_Hrs = 4;
+                    Console.WriteLine("The Employee is Present for Part Time");
+                    break;
+                default:
+                    Emp_Hrs = 0;
+                    Console.WriteLine("Employee is Absent");
+                    break;
 
-            if (empCheck == IS_FULL_TIME)
-            {
-                empHrs = 8;
-                Console.WriteLine("Employee is present");
+
             }
-            else if (empCheck == IS_PART_TIME)
-            {
-                empHrs = 4;
-                Console.WriteLine("Employee is working as part time");
-            }
-            else
-            {
-                empHrs = 0;
-                Console.WriteLine("Employee is absent");
-            }
-            empWage = empHrs * EMP_RATE_PER_HOUR;
-            Console.WriteLine("Employee Wage : " + empWage);
+            Emp_Wage = Emp_Hrs * EMP_RATE_PER_HOUR;
+            Console.WriteLine("The Employee Wage is :" + Emp_Wage + " Rupees");
+
         }
     }
     
