@@ -8,38 +8,50 @@ namespace EmployeeWage
 {
     public class EmployeeInformation
     {
-        public  void WagesforaMonth()
+        public  void EmployeeWageConditionForWorkingHours()
         {
-            int IS_FULL_TIME = 1;
-            int IS_PART_TIME = 2;
-            int EMP_RATE_PER_HOUR = 20;
-            int Number_Of_Days = 20;
-            int Emp_Hrs = 0;
-            int Emp_Wage = 0;
+            int isFullTime = 1;
+            int isPartTime = 2;
+            int empRatePerHour = 20;
+            int empHrs = 0;
+            int empWage = 0;
+            int empWagePerMonth = 0;
+            int workingDays = 20;
 
-            Random random = new Random();
+            int totalEmpHrs = 0;
+            int totalWorkingHrs = 100;
+            int totalWorkingDays = 0;
 
-            int EmpCheck = random.Next(3);
 
-            if (EmpCheck == IS_FULL_TIME)
+            while (totalEmpHrs <= totalWorkingHrs && totalWorkingDays < workingDays)
             {
-                Emp_Hrs = 8;
-                Console.WriteLine("Employee is Present");
+                Random random = new Random();
+                int emp_Check = random.Next(3);
 
+                switch (emp_Check)
+                {
+                    case 1:
+                        empHrs = 8;
+                        Console.WriteLine("The Employee is Present");
+                        break;
+                    case 2:
+                        empHrs = 4;
+                        Console.WriteLine("The Employee is Present for Part Time");
+                        break;
+                    default:
+                        empHrs = 0;
+                        Console.WriteLine("Employee is Absent");
+                        break;
+                }
+                totalWorkingDays++;
+                totalEmpHrs = totalEmpHrs + empHrs;
+                empWage = empHrs * empRatePerHour;
+                empWagePerMonth = empWagePerMonth + empWage;
+                Console.WriteLine("TotalWorking days: " + totalWorkingDays);
+                Console.WriteLine("Employee's wage per day is: " + empWage);
+                Console.WriteLine("Total employee's hours are: " + totalEmpHrs);
             }
-            else if (EmpCheck == IS_PART_TIME)
-            {
-                Emp_Hrs = 4;
-                Console.WriteLine("Employee is Present for Part Time");
-            }
-            else
-            {
-                Emp_Hrs = 0;
-                Console.WriteLine("Employee is Absent");
-            }
-            Emp_Wage = Emp_Hrs * EMP_RATE_PER_HOUR * Number_Of_Days;
-
-            Console.WriteLine("Employee Monthly wage is : " + Emp_Wage + " Rupees");
+            Console.WriteLine("Employee's wages for a Month: " + empWagePerMonth);
         }
     }
     
