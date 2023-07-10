@@ -8,78 +8,62 @@ namespace EmployeeWage
 {
     public class EmployeeInformation
     {
-        public const int is_Full_Time = 1;
-        public const int is_Part_Time = 2;
-        public static int EmpRatePerHr;
-        public static int NumOfWorkingDays;
-        public static int MaxHrInMonth;
-        public void EmpWageBuilder1()
-        {
-            EmpRatePerHr = 300;
-            NumOfWorkingDays = 20;
-            MaxHrInMonth = 100;
-            Console.WriteLine("Total Company Wage: " + (EmpRatePerHr * MaxHrInMonth));
-        }
+        public const int IsFullTime = 1;
+        public const int IsPartTime = 2;
 
-        public void EmpWageBuilder2()
+        public class CompanyEmpWage
         {
-            EmpRatePerHr = 500;
-            NumOfWorkingDays = 23;
-            MaxHrInMonth = 120;
-            Console.WriteLine("Total Company Wage: " + (EmpRatePerHr * MaxHrInMonth));
-        }
-
-        public void ComputeEmpWage()
-        {
-            int empWage = 0;
-            int empHrs = 0;
-            int totalEmpWagePerDay = 0;
-            int totalEmpWageForMonth = 0;
-            int totalEmpWageForYear = 0;
-            int totalWorkingDays = 0;
-            int totalEmpHours = 0;
-
-            while (totalEmpHours <= MaxHrInMonth && totalWorkingDays < NumOfWorkingDays)
+            public string CompanyName;
+            public int EmpWagePerHour;
+            public int WorkingDaysPerMonth;
+            public int TotalWorkingHours;
+            public CompanyEmpWage()
             {
-                totalWorkingDays++;
-                Random random = new Random();
-                int empCheck = random.Next(3);
-                switch (empCheck)
+                Console.Write("Enter the Company Name: ");
+                CompanyName = Console.ReadLine();
+                Console.Write("Enter the Employee Wage Per Hour: ");
+                EmpWagePerHour = Convert.ToInt32(Console.ReadLine());
+                Console.Write("Enter the Total Working Days for an Employee in a Month: ");
+                WorkingDaysPerMonth = Convert.ToInt32(Console.ReadLine());
+                Console.Write("Enter the Total Working Hours for an Employee in a Month: ");
+                TotalWorkingHours = Convert.ToInt32(Console.ReadLine());
+            }
+
+            public void EmpWageBuilder()
+            {
+                int empHrs, empWagePerDay, empWagePerMonth = 0, totalWorkingDays = 0, totalEmpHours = 0, totalWage;
+
+                while (totalEmpHours <= TotalWorkingHours && totalWorkingDays < WorkingDaysPerMonth)
                 {
-
-                    case is_Full_Time:
-
-                        {
+                    totalWorkingDays++;
+                    Random random = new Random();
+                    int empCheck = random.Next(3);
+                    switch (empCheck)
+                    {
+                        case IsFullTime:
+                            Console.WriteLine("Employee is Doing Full Time!");
                             empHrs = 8;
                             break;
-                        }
-
-                    case is_Part_Time:
-
-                        {
+                        case IsPartTime:
+                            Console.WriteLine("Employee is Doing Part Time!");
                             empHrs = 4;
                             break;
-                        }
-
-                    default:
-
-                        {
+                        default:
+                            Console.WriteLine("Employee is Absent!");
                             empHrs = 0;
                             break;
-                        }
+                    }
+                    totalEmpHours += empHrs;
+                    empWagePerDay = empHrs * EmpWagePerHour;
+                    empWagePerMonth += empWagePerDay;
+                    Console.WriteLine("Employee Wage per Day: " + empWagePerDay);
                 }
-                totalEmpHours += empHrs;
-
-                Console.WriteLine("Day#:" + totalWorkingDays + "Emp Hrs:" + empHrs + "Emp Wages:" + empWage);
-                totalEmpWagePerDay = empHrs * EmpRatePerHr;
-                Console.WriteLine("Total Emp Wage for company per day :" + totalEmpWagePerDay);
-                totalEmpWageForMonth += totalEmpWagePerDay;
+                Console.WriteLine("_________________________________________________________");
+                Console.WriteLine("Employee Wage Per Month : " + empWagePerMonth);
+                totalWage = empWagePerMonth * 12;
+                Console.WriteLine("Total Wage of the Employee Per Year: " + totalWage);
+                Console.WriteLine();
             }
-            Console.WriteLine("Total Emp Wage for company per month :" + totalEmpWageForMonth);
-            totalEmpWageForYear = totalEmpWageForMonth * 12;
-            Console.WriteLine("Total Emp Wage for company per year :" + totalEmpWageForYear);
-
         }
-
     }
 }
