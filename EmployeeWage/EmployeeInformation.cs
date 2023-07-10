@@ -8,51 +8,66 @@ namespace EmployeeWage
 {
     public class EmployeeInformation
     {
-        public  void EmployeeWageConditionForWorkingHours()
+        public const int is_Full_Time = 1;
+        public const int is_Part_Time = 2;
+        public const int EmpRatePerHr = 20;
+        public const int NumOfWorkingDays = 20;
+        public const int MaxHrInMonth = 100;
+        public int ComputeEmpWage()
         {
-            int isFullTime = 1;
-            int isPartTime = 2;
-            int empRatePerHour = 20;
-            int empHrs = 0;
+
+
             int empWage = 0;
-            int empWagePerMonth = 0;
-            int workingDays = 20;
-
-            int totalEmpHrs = 0;
-            int totalWorkingHrs = 100;
+            int empHrs = 0;
+            int totalEmpWage = 0;
             int totalWorkingDays = 0;
+            int totalEmpHours = 0;
 
 
-            while (totalEmpHrs <= totalWorkingHrs && totalWorkingDays < workingDays)
+            while (totalEmpHours <= MaxHrInMonth && totalWorkingDays < NumOfWorkingDays)
             {
-                Random random = new Random();
-                int emp_Check = random.Next(3);
-
-                switch (emp_Check)
-                {
-                    case 1:
-                        empHrs = 8;
-                        Console.WriteLine("The Employee is Present");
-                        break;
-                    case 2:
-                        empHrs = 4;
-                        Console.WriteLine("The Employee is Present for Part Time");
-                        break;
-                    default:
-                        empHrs = 0;
-                        Console.WriteLine("Employee is Absent");
-                        break;
-                }
                 totalWorkingDays++;
-                totalEmpHrs = totalEmpHrs + empHrs;
-                empWage = empHrs * empRatePerHour;
-                empWagePerMonth = empWagePerMonth + empWage;
-                Console.WriteLine("TotalWorking days: " + totalWorkingDays);
-                Console.WriteLine("Employee's wage per day is: " + empWage);
-                Console.WriteLine("Total employee's hours are: " + totalEmpHrs);
+                Random random = new Random();
+                int empCheck = random.Next(3);
+                switch (empCheck)
+                {
+
+                    case is_Full_Time:
+
+                        {
+                            empHrs = 8;
+                            break;
+                        }
+
+                    case is_Part_Time:
+
+                        {
+                            empHrs = 4;
+                            break;
+                        }
+
+                    default:
+
+                        {
+                            empHrs = 0;
+                            break;
+                        }
+
+
+                }
+                totalEmpHours += empHrs;
+
+                Console.WriteLine("Day#:" + totalWorkingDays + "Emp Hrs:" + empHrs + "Emp Wages:" + empWage);
+                empWage = empHrs * EmpRatePerHr;
+                totalEmpWage += empWage;
+
             }
-            Console.WriteLine("Employee's wages for a Month: " + empWagePerMonth);
+            Console.WriteLine("wages of employee per month is " + totalEmpWage);
+            return totalEmpWage;
+
         }
     }
+        
+    
     
 }

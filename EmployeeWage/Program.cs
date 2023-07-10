@@ -10,9 +10,9 @@ namespace EmployeeWage
     {
         static void Main(string[] args)
         {
-            EmployeeInformation employeeInformation = new EmployeeInformation();
-            employeeInformation.EmployeeWageConditionForWorkingHours();
-            Console.ReadLine();
+            // refactor the code to write aclass method to compute emp wages
+            EmployeeInformation obj = new EmployeeInformation();
+            obj.ComputeEmpWage();
         }
     }
 }
