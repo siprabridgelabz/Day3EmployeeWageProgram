@@ -10,13 +10,32 @@ namespace EmployeeWage
     {
         public const int is_Full_Time = 1;
         public const int is_Part_Time = 2;
-
-        public int ComputeEmpWage(string company, int EmpRatePerHr, int NumOfWorkingDays, int MaxHrInMonth)
+        public static int EmpRatePerHr;
+        public static int NumOfWorkingDays;
+        public static int MaxHrInMonth;
+        public void EmpWageBuilder1()
         {
+            EmpRatePerHr = 300;
+            NumOfWorkingDays = 20;
+            MaxHrInMonth = 100;
+            Console.WriteLine("Total Company Wage: " + (EmpRatePerHr * MaxHrInMonth));
+        }
 
+        public void EmpWageBuilder2()
+        {
+            EmpRatePerHr = 500;
+            NumOfWorkingDays = 23;
+            MaxHrInMonth = 120;
+            Console.WriteLine("Total Company Wage: " + (EmpRatePerHr * MaxHrInMonth));
+        }
+
+        public void ComputeEmpWage()
+        {
             int empWage = 0;
             int empHrs = 0;
-            int totalEmpWage = 0;
+            int totalEmpWagePerDay = 0;
+            int totalEmpWageForMonth = 0;
+            int totalEmpWageForYear = 0;
             int totalWorkingDays = 0;
             int totalEmpHours = 0;
 
@@ -52,11 +71,15 @@ namespace EmployeeWage
                 totalEmpHours += empHrs;
 
                 Console.WriteLine("Day#:" + totalWorkingDays + "Emp Hrs:" + empHrs + "Emp Wages:" + empWage);
-                empWage = empHrs * EmpRatePerHr;
-                totalEmpWage += empWage;
+                totalEmpWagePerDay = empHrs * EmpRatePerHr;
+                Console.WriteLine("Total Emp Wage for company per day :" + totalEmpWagePerDay);
+                totalEmpWageForMonth += totalEmpWagePerDay;
             }
-            Console.WriteLine("wages of employee per month is " + totalEmpWage);
-            return totalEmpWage;
+            Console.WriteLine("Total Emp Wage for company per month :" + totalEmpWageForMonth);
+            totalEmpWageForYear = totalEmpWageForMonth * 12;
+            Console.WriteLine("Total Emp Wage for company per year :" + totalEmpWageForYear);
+
         }
+
     }
 }

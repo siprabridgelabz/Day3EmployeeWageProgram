@@ -10,18 +10,26 @@ namespace EmployeeWage
     {
         static void Main(string[] args)
         {
-            // Compute Employee wages for multiple Company
-
-            Console.WriteLine("Enter the name of the company Dmart or Relince:");
-            string company = Console.ReadLine();
-
+            Console.WriteLine("Welcome to Employee age Computation Program");
+            Console.WriteLine("*******************");
+            Console.WriteLine("Enter the company Name : \n1. Dmart\n2.Reliance");
+            int company = Convert.ToInt32(Console.ReadLine());
             EmployeeInformation obj = new EmployeeInformation();
-            if (company == "Dmart")
+            switch (company)
             {
-                obj.ComputeEmpWage(company, 20, 10, 90);
+                case 1:
+                    obj.EmpWageBuilder1();
+                    obj.ComputeEmpWage();
+                    break;
+                case 2:
+                    obj.EmpWageBuilder2();
+                    obj.ComputeEmpWage();
+                    break;
+
+                default:
+                    Console.WriteLine("Enter a valid company!!!");
+                    break;
             }
-            else if (company == "Relince") { obj.ComputeEmpWage(company, 20, 10, 90); }
-            else { Console.WriteLine("Please enter correct company!!"); }
         }
     }
 }
